@@ -7,6 +7,7 @@ const commandLine = new CLI();
 // Print the version when being run standalone
 commandLine.printVersion();
 
-commandLine.run(process.argv, {}).then(() => {
+commandLine.run(process.argv, {}).then((success) => {
     debug("SkillTester Completed");
+    process.exit(success ? 0 : 1);
 });
