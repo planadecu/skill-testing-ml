@@ -53,6 +53,7 @@
   },
   "scripts": {
     "babel": "npm run babel.lib && npm run babel.test && npm run babel.bin",
+    "prepublishOnly": "npm run babel.lib && npm run babel.bin",
     "babel.lib": "babel lib -d dist/lib",
     "babel.test": "babel test -D -d dist/test",
     "babel.bin": "babel bin -d dist/bin",
