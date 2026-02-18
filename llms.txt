@@ -1,0 +1,45 @@
+# skill-testing-ml
+
+> Maintained fork of bespoken/skill-testing-ml — a YAML-based testing framework for Alexa skills
+
+## Overview
+
+skill-testing-ml lets you write Alexa skill tests in YAML and run them with Jest. It provides a custom Jest test runner (JestAdapter) that translates YAML test definitions into Jest test results, using virtual-alexa to simulate Alexa interactions locally.
+
+This is a community-maintained fork. The original project by Bespoken is discontinued and archived. The goal of this fork is to keep the library working with modern Node.js (>=18) and current dependencies (Jest 29, lodash 4.17.21, uuid 11, etc.), not to add new features.
+
+## Architecture
+
+- `lib/runner/CLI.js` — CLI entry point. Calls Jest programmatically via `jest.runCLI()`.
+- `lib/runner/Configuration.js` — Loads `testing.json`, merges Jest config defaults with user overrides.
+- `lib/runner/JestAdapter.js` — Custom Jest `testRunner`. Jest calls this for each .yml test file. It delegates to TestRunner, then transforms results into Jest's TestResult format.
+- `lib/runner/TestRunner.js` — Core test execution. Parses YAML, creates invokers, runs interactions, collects results.
+- `lib/runner/VirtualAlexaInvoker.js` — Uses virtual-alexa to invoke the skill handler locally.
+- `lib/test/TestParser.js` — Parses YAML test files into Test/TestSuite objects.
+- `lib/test/Assertion.js` — Evaluates assertions against Alexa responses using JSON path expressions.
+- `bin/SkillTester.js` — The `skill-tester` CLI binary.
+
+## Key Files
+
+- `testing.json` — User configuration (handler path, Jest overrides, locale, userId, etc.)
+- `package.json` — Dependencies: jest ^29.7.0, virtual-alexa, lodash, chalk, cosmiconfig, uuid
+- `.babelrc` — Babel config (async/await, classes, block scoping transforms for dist/)
+- `lib/` — ES6+ source code
+- `dist/` — Babel-compiled output (committed for GitHub-based installs)
+
+## How It Works
+
+1. User runs `npx skill-tester`
+2. CLI loads `testing.json`, builds Jest config with `testRunner` pointing to JestAdapter.js
+3. Jest discovers .yml files matching `testMatch` patterns
+4. For each .yml file, Jest calls JestAdapter which:
+   a. Parses YAML into test suites/interactions
+   b. Creates a VirtualAlexaInvoker pointing to the user's skill handler
+   c. Sends each utterance/intent through virtual-alexa
+   d. Evaluates assertions against responses
+   e. Returns Jest-compatible TestResult
+5. Jest aggregates results and reports pass/fail
+
+## Contributing
+
+PRs are welcome. Focus: dependency updates, Node.js compatibility fixes, bug fixes. Not adding new features.

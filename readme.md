@@ -1,48 +1,85 @@
-[![CircleCI](https://circleci.com/gh/bespoken/skill-testing-ml.svg?style=svg&circle-token=baefda47f4480601f66cc6a579920b2b1bb739e5)](https://circleci.com/gh/bespoken/skill-testing-ml)
-[![Build status](https://ci.appveyor.com/api/projects/status/94a7lb3jdioai2jx?svg=true)](https://ci.appveyor.com/project/jkelvie/skill-testing-ml)
-[![codecov](https://codecov.io/gh/bespoken/skill-testing-ml/branch/master/graph/badge.svg?token=C2VONoJUN3)](https://codecov.io/gh/bespoken/skill-testing-ml)
-# The Skill Tester
+# skill-testing-ml (maintained fork)
 
-## What Is This
-A tool for unit-testing Alexa skills.
+A YAML-based testing framework for Alexa skills. Write tests declaratively, run them with Jest.
 
-## How It Works
-Write tests in YAML, like this:
+## Why this fork?
+
+The [original `skill-testing-ml`](https://github.com/bespoken/skill-testing-ml) by Bespoken is **discontinued and archived**. It ships Jest 24 and several outdated dependencies with known vulnerabilities, making it incompatible with modern Node.js toolchains.
+
+This fork maintains compatibility with **current dependencies**:
+
+| Dependency | Original | This fork |
+|------------|----------|-----------|
+| jest | ^24.7.1 | ^29.7.0 |
+| jest-message-util | ^24.7.1 | ^29.7.0 |
+| lodash | ^4.17.11 | ^4.17.21 |
+| uuid | ^3.3.3 | ^11.0.0 |
+| chalk | ^2.4.2 | ^4.1.2 |
+| Node.js | >=12 | >=18 |
+
+Removed unused dependencies: `virtual-device-sdk`, `virtual-google-assistant`.
+
+## Installation
+
+```bash
+npm install github:planadecu/skill-testing-ml
 ```
+
+This replaces `bespoken-tools` — you no longer need `bst test`. Use `skill-tester` directly.
+
+## Usage
+
+Create a `testing.json` in your project root:
+
+```json
+{
+  "handler": "./src/index.js",
+  "runInBand": true
+}
+```
+
+Write tests in YAML:
+
+```yaml
 ---
-- test: "Sequence 01. Test scenario: launch request, no further interaction."
-- LaunchRequest: # LaunchRequest is not an utterance but a request type and "reserved" word
+- test: "Launch request"
+- LaunchRequest:
   - response.outputSpeech.ssml: "Here's your fact"
   - response.card.type: "Simple"
   - response.card.title: "Space Facts"
-  - response.card.content: "/.*/" # Regular expression indicating any text will match
+  - response.card.content: "/.*/"
 ```
 
-Output:  
-<img src="https://raw.githubusercontent.com/bespoken/skill-testing-ml/master/docs/BST-Test-Output.png" width="500" alt="Output" />
+Run:
 
-Read our [getting started guide here](https://read.bespoken.io/unit-testing/getting-started/).
+```bash
+npx skill-tester
+```
 
-Learn about [common use-cases here](https://read.bespoken.io/unit-testing/use-cases/).
+## Features
 
-For more in-depth info, read the [full specification](https://docs.google.com/document/d/17GOv1yVAKY4vmOd1Vhg_IitpyCMiX-e_b09eufNysYI/edit)
+- Multi-turn conversations
+- Dialog Interface support
+- AudioPlayer interface support
+- Entity resolution
+- Explicit intent and slot setting
+- Wildcard support for non-regex expressions
+- Support for setting address and permissions
+- Explicit SessionEndedRequest
+- Support for goto and flow control
+- Support for testing DynamoDB
+- Callbacks for filtering payloads programmatically
 
-## Current Support
-- [X] Multi-turn conversations
-- [X] Dialog Interface support
-- [X] AudioPlayer interface support
-- [X] Entity resolution
-- [X] Explicit intent and slot setting
-- [X] Wildcard support for non-regex expressions
-- [X] Support for setting address and permissions
-- [X] Explicit SessionEndedRequest
-- [X] Support for goto and flow control
-- [X] Support for testing dynamo
-- [X] Callbacks for filtering payloads programmatically
-- [X] Virtual device support
+## Documentation
 
-## Roadmap
-- [ ] Much better documentation!
+- [Getting started guide](https://read.bespoken.io/unit-testing/getting-started/)
+- [Common use-cases](https://read.bespoken.io/unit-testing/use-cases/)
+- [Full specification](https://docs.google.com/document/d/17GOv1yVAKY4vmOd1Vhg_IitpyCMiX-e_b09eufNysYI/edit)
 
-## Support
-[Talk to us on gitter](https://gitter.im/bespoken/bst).
+## Contributing
+
+PRs are welcome. The goal is to keep this fork working with modern Node.js and up-to-date dependencies, not to add new features. If you find a compatibility issue, please open an issue or submit a fix.
+
+## License
+
+ISC (see [LICENSE](LICENSE))

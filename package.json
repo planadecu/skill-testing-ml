@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bespoken/skill-testing-ml.git"
+    "url": "git://github.com/planadecu/skill-testing-ml.git"
   },
   "scripts": {
     "babel": "npm run babel.lib && npm run babel.test && npm run babel.bin",
