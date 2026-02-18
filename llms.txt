@@ -40,6 +40,13 @@ This is a community-maintained fork. The original project by Bespoken is discont
    e. Returns Jest-compatible TestResult
 5. Jest aggregates results and reports pass/fail
 
+## Documentation
+
+- `docs/test-runner.md` — TestRunner and TestParser programmatic API with examples
+- `docs/extending-invokers.md` — How to add a custom invoker (override Invoker and InvokerResponse classes)
+- `docs/development.md` — Building the project, creating pull requests
+- [YAML test specification](https://docs.google.com/document/d/17GOv1yVAKY4vmOd1Vhg_IitpyCMiX-e_b09eufNysYI/edit) — Full language spec (external Google Doc)
+
 ## Contributing
 
 PRs are welcome. Focus: dependency updates, Node.js compatibility fixes, bug fixes. Not adding new features.

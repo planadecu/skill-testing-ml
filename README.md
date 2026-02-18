@@ -73,8 +73,9 @@ npx skill-tester
 ## Documentation
 
 - [YAML test specification](https://docs.google.com/document/d/17GOv1yVAKY4vmOd1Vhg_IitpyCMiX-e_b09eufNysYI/edit)
-- [TestRunner & TestParser API](docs/TestRunner.md)
-- [Adding a custom invoker](docs/extending.md)
+- [TestRunner & TestParser API](docs/test-runner.md)
+- [Adding a custom invoker](docs/extending-invokers.md)
+- [Development guide](docs/development.md)
 
 ## Contributing
 

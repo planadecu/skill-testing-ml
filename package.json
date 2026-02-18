@@ -56,11 +56,9 @@
     "babel.lib": "babel lib -d dist/lib",
     "babel.test": "babel test -D -d dist/test",
     "babel.bin": "babel bin -d dist/bin",
-    "docs": "rm -rf docs/api && jsdoc -c jsdoc-conf.json",
     "lint": "eslint --config .eslintrc.json bin lib test",
     "lint.fix": "eslint --config .eslintrc.json --fix bin lib test",
     "pretest": "npm run lint",
-    "preversion.bak": "npm test && npm run test.babel && npm run docs",
     "test": "jest",
     "test.babel": "npm run babel && jest --config jest-config-babel.json",
     "test.smapi.1": "jest --runInBand test/SMAPI.test.js",
@@ -109,7 +107,6 @@
     "eslint-plugin-spellcheck": "^0.0.11",
     "eslint-plugin-standard": "^4.0.0",
     "jest-junit": "^6.4.0",
-    "jsdoc": "^3.6.1",
     "nock": "^10.0.6",
     "sprintf-js": "^1.1.1"
   }
