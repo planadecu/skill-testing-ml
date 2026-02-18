@@ -1,6 +1,6 @@
 {
   "name": "@planadecu/skill-testing-ml",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Skill Testing Markup Language",
   "main": "dist/lib/Index.js",
   "bin": {
@@ -67,7 +67,7 @@
     "coverage": "codecov",
     "test.watch": "jest --watchAll"
   },
-  "author": "John Kelvie",
+  "author": "Jordi Planadecursach (original author: John Kelvie)",
   "license": "ISC",
   "dependencies": {
     "bespoken-jest-stare": "^1.1.0-RC.2",
