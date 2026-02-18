@@ -22,7 +22,7 @@ Removed unused dependencies: `virtual-device-sdk`, `virtual-google-assistant`.
 ## Installation
 
 ```bash
-npm install github:planadecu/skill-testing-ml
+npm install @planadecu/skill-testing-ml
 ```
 
 This replaces `bespoken-tools` — you no longer need `bst test`. Use `skill-tester` directly.
@@ -72,9 +72,9 @@ npx skill-tester
 
 ## Documentation
 
-- [Getting started guide](https://read.bespoken.io/unit-testing/getting-started/)
-- [Common use-cases](https://read.bespoken.io/unit-testing/use-cases/)
-- [Full specification](https://docs.google.com/document/d/17GOv1yVAKY4vmOd1Vhg_IitpyCMiX-e_b09eufNysYI/edit)
+- [YAML test specification](https://docs.google.com/document/d/17GOv1yVAKY4vmOd1Vhg_IitpyCMiX-e_b09eufNysYI/edit)
+- [TestRunner & TestParser API](docs/TestRunner.md)
+- [Adding a custom invoker](docs/extending.md)
 
 ## Contributing
 

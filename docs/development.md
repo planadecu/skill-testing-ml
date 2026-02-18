@@ -1,18 +1,20 @@
 # Developing on this Project
 
 ## Prerequisites
-By default, we assume that you are using Node 8.
+Node.js >= 18.
 
-The project uses that by default, and work can be done without any transpiling with Node 8 installed.
+## Source Structure
+- `lib/` — ES6+ source code
+- `dist/` — Babel-compiled output (committed to repo)
+- `bin/` — CLI entry point
 
-## Babel
-Babel is used for distributing the code, so that it works with older node versions.
+## Building
+```bash
+npm install
+npm run babel
+```
 
-The "offical" npm tests are run against the babel compiled version of the code, under `dist`.
-
-Additionally, the code under dist is what is distributed on installation.
+This transpiles `lib/` and `bin/` into `dist/` using Babel.
 
 ## Creating Pull Requests
-Be sure to run `npm test` before creating PRs.
-
-It will run the tests as well as lint the code. Errors with either will cause the build to fail on Circle CI.
+Run `npm run babel` to rebuild `dist/` before committing. Both `lib/` and `dist/` should be committed.
